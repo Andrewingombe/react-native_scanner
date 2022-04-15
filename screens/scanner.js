@@ -25,23 +25,19 @@ export const Scanner = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(BarCodeScanner.Constants.Type.back);
   const [scanned, setScanned] = useState(false);
-  const [scannedData, setScannedData] = useState([]);
+  const [scannedCode, setScannedCode] = useState([]);
 
   // ---------------------------
   // Set and store data in AsyncStorage
   // ---------------------------
-  const saveData = async (data) => {
+  const saveData = async (scannedData) => {
     try {
-      const jsonValue = JSON.stringify(data);
+      const jsonValue = JSON.stringify(scannedData);
       await AsyncStorage.setItem("@scanned_codes", jsonValue);
     } catch (error) {
       alert(error.message);
     }
   };
-
-  // ---------------------------
-  // Get stored data from AsyncStorage
-  // ---------------------------
 
   // ---------------------------
   // Request camera permission on page load
@@ -67,16 +63,9 @@ export const Scanner = () => {
         x <= viewMinX + finderWidth / 2 &&
         y <= viewMinY + finderHeight / 2
       ) {
-        let scannedData = [];
-
         setScanned(true);
         alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-        scannedData.push({
-          type: type,
-          data: data,
-        });
-
-        saveData(scannedData);
+        alert(scanned);
       }
     }
   };
