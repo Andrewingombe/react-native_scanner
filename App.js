@@ -5,7 +5,6 @@ import Scanner2 from "./screens/scanner2";
 import { ScanHistory } from "./screens/scanHistory";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 
